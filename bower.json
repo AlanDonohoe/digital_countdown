@@ -6,10 +6,10 @@
   "description": "Digital Style Countdown",
   "main": "assets/js/digital-countdown.js",
   "keywords": [
-    "['jquery'",
-    "'javascript'",
-    "'digital",
-    "countdown']"
+    "jquery",
+    "javascript",
+    "digital",
+    "countdown"
   ],
   "license": "MIT",
   "homepage": "http://www.jqueryscript.net/time-clock/Minimal-Digital-Countdown-Plugin-with-jQuery-Moment-js.html",
