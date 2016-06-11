@@ -3,14 +3,17 @@
     $.fn.countdownDigital = function(options){
         
         // Default parameters
-		var defaults = $.extend({
-			dateTo: '2016-06-21',
+        var _defaults = $.extend({
+            dateTo: '2016-06-21',
             dateNow: null,
-            labels: true,
-            showBlank: true
-		},options);
+            _labels: false,
+            showBlank: true,
+            seperator: true,
+            seperatorChar: ','
+
+        },options);
   
-        var digits = [
+        var _digits = [
             'zero', 
             'one', 
             'two', 
@@ -20,115 +23,101 @@
             'six',
             'seven',
             'eight',
-            'nine'
+            'nine',
+            'comma'
         ];
 
-        var labels = [
-            'years',
-            'months',
-            'days',
-            'hours',
-            'minutes',
+        var _labels = [
             'seconds'
         ];
 
-        function drawCountdown(_element) {
+        function drawCountdown(element) {
             
-            var dateTo = moment(defaults.dateTo);
-            var dateNow = (defaults.dateNow == null) ? moment() : defaults.dateNow; 
-            var dateDiff = dateTo.diff(dateNow);
-            var asDurations = getAsDurations(dateDiff);
-            var durations = getDurations(dateDiff);
-            var digit_holder = $('<div class="digits"></div>').appendTo(_element);
+            var dateTo = moment(_defaults.dateTo);
+            var dateNow = (_defaults.dateNow === null) ? moment() : _defaults.dateNow; 
+            var dateDiffSeconds = dateTo.diff(dateNow, 'seconds');
+            var digit_holder = $('<div class="_digits"></div>').appendTo(element);
+            var num, numSplit, numSplitWithCommas, isComma, digit;
             
-            $.each(labels, function(key,val){
-                var arg = (asDurations[key] > 1);
-                if(arg || defaults.showBlank) {
-                    if(dateDiff > 0) {
-                        var num = pad(durations[key],2);
-                        var num_split = num.toString().split("");
+            $.each(_labels, function(key,val){
+                if(dateDiffSeconds > 0) {
+                    num = pad(dateDiffSeconds,8);
+                    numSplit = num.toString().split("");
+                } else {
+                    numSplit = ['0','0'];
+                }
+                numSplitWithCommas = addCommas(numSplit);
+                var label = $('<div></div>',{
+                    class: 'each '+val
+                });
+                $.each(numSplitWithCommas, function(key_no,val_no){
+                    isComma = undefined === _digits[val_no] ? true : false;
+                    
+                    if (isComma) {
+                        digit = $('<div></div>',{
+                            class: 'comma digit '+val+'_'+key_no
+                        });
+                        digit.append('<span class="comma">,</span>');
                     } else {
-                        var num_split = ['0','0'];
-                    }
-                    var label = $('<div></div>',{
-                        class: 'each '+val
-                    });
-                    $.each(num_split, function(key_no,val_no){
-                        var digit = $('<div></div>',{
-                            class: 'digit '+val+'_'+key_no
+                        digit = $('<div></div>',{
+                            class: 'real-number digit '+val+'_'+key_no
                         });
                         for(var i=1; i<8; i++){
                             digit.append('<span class="side d' + i + '">');
                         }
-                        if(dateDiff > 0) {
-                            digit.addClass(digits[val_no]);
+                        if(dateDiffSeconds > 0) {
+                            digit.addClass(_digits[val_no]);
                         } else {
                             digit.addClass('zero');
                         }
-                        digit.appendTo(label);
-                    });
-                    if(defaults.labels) label.append('<span class="text">'+val+'</span>');
-                    label.append('<span class="dots"></span>');
-                    label.appendTo(digit_holder);
-
-                } 
+                    }
+                    digit.appendTo(label);
+                });
+                if(_defaults._labels) label.append('<span class="text">'+val+'</span>');
+                label.append('<span class="dots"></span>');
+                label.appendTo(digit_holder);
             });
 
         }
 
         
-        function updateTime(_element) {
+        function updateTime(element) {
 
-            var dateTo = moment(defaults.dateTo);
-            var dateNow = (defaults.dateNow == null) ? moment() : defaults.dateNow; 
-            var dateDiff = dateTo.diff(dateNow);
+            var dateTo = moment(_defaults.dateTo);
+            var dateNow = (_defaults.dateNow === null) ? moment() : _defaults.dateNow; 
+            var dateDiffSeconds= dateTo.diff(dateNow, 'seconds');
             
-            if(dateDiff > 0) {
-                var asDurations = getAsDurations(dateDiff);
-                var durations = getDurations(dateDiff);
-                $.each(labels, function(key,val){
-                    var num = pad(durations[key],2);
-                    var num_split = num.toString().split("");
-                    $.each(num_split, function(key_no,val_no){
-                        var dig = $(_element).find('.digit.'+val+'_'+key_no);
-                        dig.removeClass().addClass('digit '+val+'_'+key_no+' '+digits[val_no]);
+            if(dateDiffSeconds > 0) {
+                $.each(_labels, function(key,val){
+                    var num = pad(dateDiffSeconds,8);
+                    var numSplit = num.toString().split("");
+                    var numSplitWithCommas = addCommas(numSplit);
+                    var dig, isComma;
+ 
+                    $.each(numSplitWithCommas, function(key_no,val_no){
+                        isComma = undefined === _digits[val_no] ? true : false;
+                        if (isComma) {
+                            dig = $(element).find('.digit.'+val+'_'+key_no);
+                            dig.removeClass().addClass('comma digit '+val+'_'+key_no);
+                        } else {
+                            dig = $(element).find('.digit.'+val+'_'+key_no);
+                            dig.removeClass().addClass('real-number digit '+val+'_'+key_no+' '+_digits[val_no]);
+                        }
                     });
                 });
             } else {
-                $.each(labels, function(key,val){
-                    var dig = $(_element).find('.digit');
+                $.each(_labels, function(key,val){
+                    var dig = $(element).find('.digit');
                     dig.addClass('zero');
                 });
             }
             
         }
         
-        function getDurations(dateDiff) {
-            return [
-                moment.duration(dateDiff).years(),
-                moment.duration(dateDiff).months(),
-                moment.duration(dateDiff).days(),
-                moment.duration(dateDiff).hours(),
-                moment.duration(dateDiff).minutes(),
-                moment.duration(dateDiff).seconds()
-            ];
-        }
-        
-        function getAsDurations(dateDiff) {
-             return [
-                moment.duration(dateDiff).asYears(),
-                moment.duration(dateDiff).asMonths(),
-                moment.duration(dateDiff).asDays(),
-                moment.duration(dateDiff).asHours(),
-                moment.duration(dateDiff).asMinutes(),
-                moment.duration(dateDiff).asSeconds()
-            ];            
-        }
-        
-        function startCountdown(_element) {
+        function startCountdown(element) {
             setInterval( 
                 function() { 
-                    updateTime(_element);
+                    updateTime(element);
                 }, 1000);
         }
         
@@ -136,20 +125,29 @@
         // Return instance
         return this.each(function(){
             
-            var _element = $(this);
+            var element = $(this);
             
-            drawCountdown(_element);
-            startCountdown(_element);
-		});
+            drawCountdown(element);
+            startCountdown(element);
+        });
 
         function pad(num, size) {
             // Add the leading zeros to the numbers
-            var s = num+"";
-            while (s.length < size) s = "0" + s;
+            var s = num + '';
+            while (s.length < size) s = '0' + s;
             return s;
         }
 
-        
+        function addCommas(numbers) {
+            var numbers_with_commas = numbers;
+            var arr_length = numbers_with_commas.length;
+            for (var i = numbers_with_commas.length; i > 0; --i) {
+                if (0 === i % 3) {
+                    numbers_with_commas.splice(i - 1, 0, 'comma');
+                }
+            }
+            return numbers_with_commas;
+        }
     };
     
 }(window, jQuery));

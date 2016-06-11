@@ -3,40 +3,57 @@
 /* Tablet */
 /* Mobile */
 * {
-  box-sizing: border-box; }
-
-body {
-  background: #EEE;
-  font-family: sans-serif; }
+  box-sizing: border-box;
+}
 
 .clock {
-  background-color: #FFF;
-  padding: 10px; }
-  @media only screen and (max-width: 40.063em) {
-    .clock {
-      min-width: 430px; } }
+  background-color: black;
+  padding: 10px;
+}
+
+@media only screen and (max-width: 40.063em) {
+  .clock {
+    min-width: 430px;
+  }
+}
 
 .digit {
-  width: 60px;
   height: 120px;
-  background-color: #FFF;
+  background-color: black;
   position: relative;
-  display: inline-block; }
-  @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
-    .digit {
-      width: 40px;
-      height: 80px; } }
-  @media only screen and (max-width: 40.063em) {
-    .digit {
-      width: 30px;
-      height: 60px; } }
+  display: inline-block; 
+}
+
+@media only screen and (max-width: 40.063em) {
+  .digit {
+    width: 30px;
+    height: 60px;
+  }
+}
+
+@media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
+  .digit {
+    width: 40px;
+    height: 80px;
+  }
+}
+
+.digit.real-number {
+  @extend .digit;
+  width: 60px;
+}
+
+.digit.comma {
+  @extend .digit;
+  width: 20px;
+}
 
 .dots {
   display: inline-block;
   width: 20px;
   height: 120px;
   position: relative;
-  background-color: #FFF; }
+  background-color: black; }
   @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
     .dots {
       width: 12px;
@@ -51,7 +68,7 @@ body {
     left: 5px;
     content: '';
     position: absolute;
-    background: #990000; }
+    background: $light-blue; }
     @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
       .dots:before, .dots:after {
         width: 6px;
@@ -96,7 +113,7 @@ body {
   left: 3.6px;
   width: 52.8px;
   height: 0;
-  border-top-color: #990000; }
+  border-top-color: $light-blue; }
   @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
     .d1 {
       top: 1.6px;
@@ -114,7 +131,7 @@ body {
   height: 54px;
   border-bottom-width: 6px;
   width: 0;
-  border-left-color: #990000; }
+  border-left-color: $light-blue; }
   @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
     .d2 {
       top: 4px;
@@ -133,7 +150,7 @@ body {
   right: 2.4px;
   height: 54px;
   border-bottom-width: 6px;
-  border-right-color: #990000;
+  border-right-color: $light-blue;
   width: 0; }
   @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
     .d3 {
@@ -167,7 +184,7 @@ body {
     border: 6px solid transparent;
     border-left-width: 10.2px;
     border-right-width: 10.2px;
-    border-bottom-color: #990000; }
+    border-bottom-color: $light-blue; }
     @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
       .d4:before {
         top: 33px;
@@ -176,7 +193,7 @@ body {
         border: 3.2px solid transparent;
         border-left-width: 6.8px;
         border-right-width: 6.8px;
-        border-bottom-color: #990000; } }
+        border-bottom-color: $light-blue; } }
     @media only screen and (max-width: 40.063em) {
       .d4:before {
         top: 24px;
@@ -185,7 +202,7 @@ body {
         border: 3px solid transparent;
         border-left-width: 5.1px;
         border-right-width: 5.1px;
-        border-bottom-color: #990000; } }
+        border-bottom-color: $light-blue; } }
   .d4:after {
     position: absolute;
     top: 60px;
@@ -197,7 +214,7 @@ body {
     border: 6px solid transparent;
     border-left-width: 10.2px;
     border-right-width: 10.2px;
-    border-top-color: #990000; }
+    border-top-color: $light-blue; }
     @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
       .d4:after {
         top: 39px;
@@ -206,7 +223,7 @@ body {
         border: 4px solid transparent;
         border-left-width: 6.8px;
         border-right-width: 6.8px;
-        border-top-color: #990000; } }
+        border-top-color: $light-blue; } }
     @media only screen and (max-width: 40.063em) {
       .d4:after {
         top: 30px;
@@ -215,14 +232,14 @@ body {
         border: 3px solid transparent;
         border-left-width: 5.1px;
         border-right-width: 5.1px;
-        border-top-color: #990000; } }
+        border-top-color: $light-blue; } }
 
 .d5 {
   bottom: 3.6px;
   right: 2.4px;
   height: 54px;
   border-top-width: 6px;
-  border-right-color: #990000;
+  border-right-color: $light-blue;
   width: 0; }
   @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
     .d5 {
@@ -242,7 +259,7 @@ body {
   left: 2.4px;
   height: 54px;
   border-top-width: 6px;
-  border-left-color: #990000;
+  border-left-color: $light-blue;
   width: 0; }
   @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
     .d6 {
@@ -262,17 +279,47 @@ body {
   left: 3.6px;
   width: 52.8px;
   height: 0;
-  border-bottom-color: #990000; }
-  @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
-    .d7 {
-      bottom: 1.6px;
-      left: 2.4px;
-      width: 35.2px; } }
-  @media only screen and (max-width: 40.063em) {
-    .d7 {
-      bottom: 1.2px;
-      left: 1.8px;
-      width: 26.4px; } }
+  border-bottom-color: $light-blue;
+}
+@media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
+  .d7 {
+    bottom: 1.6px;
+    left: 2.4px;
+    width: 35.2px;
+  }
+}
+@media only screen and (max-width: 40.063em) {
+  .d7 {
+    bottom: 1.2px;
+    left: 1.8px;
+    width: 26.4px;
+  }
+}
+
+.comma {
+  bottom: 2.4px;
+  /*left: 3.6px;*/
+  width: 52.8px;
+  height: 0;
+  /*width: 30px;*/
+  /*border-bottom-color: $light-blue;*/
+  color: $light-blue;
+  font-size: 25px;
+}
+@media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
+  .comma {
+    bottom: 1.6px;
+    left: 2.4px;
+    width: 35.2px;
+  }
+}
+@media only screen and (max-width: 40.063em) {
+  .comma {
+    bottom: 1.2px;
+    left: 1.8px;
+    width: 26.4px;
+  }
+}
 
 /* 1 */
 .digit.one .d3,
@@ -352,6 +399,58 @@ body {
 .digit.zero .d7 {
   opacity: 1; }
 
+/* comma */
+/*.digit.comma .d5  {
+  opacity: 1;
+
+}*/
+
+
+/*.comma {
+  bottom: 2.4px;
+  left: 3.6px;
+  width: 52.8px;
+  height: 0;
+  border-bottom-color: $light-blue; 
+  opacity: 1;
+  /*display: inline;
+}
+  @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
+    .comma {
+      bottom: 1.6px;
+      left: 2.4px;
+      width: 35.2px; } }
+  @media only screen and (max-width: 40.063em) {
+    .comma {
+      bottom: 1.2px;
+      left: 1.8px;
+      width: 26.4px; } }*/
+
+/*.digit.comma .d7 {
+ top: 2.4px;
+  left: 3.6px;
+  width: 52.8px;
+  height: 0;
+  border-top-color: $light-blue;
+  opacity: 1;
+}
+*/
+/*@media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
+  .comma {
+    top: 1.6px;
+    left: 2.4px;
+    width: 35.2px; 
+  }
+}
+
+@media only screen and (max-width: 40.063em) {
+  .comma {
+    top: 1.2px;
+    left: 1.8px;
+    width: 26.4px;
+  }
+}*/
+
 /* Labels */
 .labels {
   display: block;
@@ -359,8 +458,8 @@ body {
   background-color: #FFF; }
 
 .each {
-  width: 140px;
-  height: 150px;
+  /*width: 600px;*/
+  /*height: 250px;*/
   position: relative;
   display: inline-block;
   font-size: 0.7em;
@@ -368,7 +467,7 @@ body {
   text-transform: uppercase;
   font-weight: bold;
   text-align: center; }
-  @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
+  /*@media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
     .each {
       width: 92px;
       height: 110px; } }
@@ -376,7 +475,7 @@ body {
     .each {
       width: 70px;
       height: 90px;
-      font-size: 0.6em; } }
+      font-size: 0.6em; } }*/
   .each .text {
     position: absolute;
     bottom: 0;
