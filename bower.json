@@ -1,7 +1,8 @@
 {
   "name": "minimal_digital_countdown_plugin",
+  "version": "1.0.0",
   "authors": [
-    "@inoratdawn"
+    "@inoratdawn", "@ghostfacecoder"
   ],
   "description": "Digital Style Countdown",
   "main": "assets/js/digital-countdown.js",
