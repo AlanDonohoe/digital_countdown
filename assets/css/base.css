@@ -2,6 +2,7 @@
 /* Desktop */
 /* Tablet */
 /* Mobile */
+/*TODO replace this more specific selector...*/
 * {
   box-sizing: border-box;
 }
