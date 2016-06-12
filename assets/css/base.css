@@ -2,10 +2,6 @@
 /* Desktop */
 /* Tablet */
 /* Mobile */
-/*TODO replace this more specific selector...*/
-* {
-  box-sizing: border-box;
-}
 
 .clock {
   background-color: black;
@@ -47,6 +43,34 @@
 .digit.comma {
   @extend .digit;
   width: 20px;
+}
+
+@media only screen and (max-width: 40.063em) {
+  .digit.real-number {
+    width: 30px;
+    height: 60px;
+  }
+}
+
+@media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
+  .digit.real-number {
+    width: 40px;
+    height: 80px;
+  }
+}
+
+@media only screen and (max-width: 40.063em) {
+  .digit.comma {
+    width: 30px;
+    height: 60px;
+  }
+}
+
+@media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
+  .digit.comma {
+    width: 40px;
+    height: 80px;
+  }
 }
 
 .dots {
@@ -152,88 +176,115 @@
   height: 54px;
   border-bottom-width: 6px;
   border-right-color: $light-blue;
-  width: 0; }
-  @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
-    .d3 {
-      top: 4px;
-      right: 1.6px;
-      height: 33.6px;
-      border-bottom-width: 4px; } }
+  width: 0;
+}
+
+@media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
+  .d3 {
+    top: 4px;
+    right: 1.6px;
+    height: 33.6px;
+    border-bottom-width: 4px;
+  }
+}
   @media only screen and (max-width: 40.063em) {
-    .d3 {
-      top: 1.8px;
-      right: 1.2px;
-      height: 27px;
-      border-bottom-width: 3px; } }
+  .d3 {
+    top: 1.8px;
+    right: 1.2px;
+    height: 27px;
+    border-bottom-width: 3px;
+  }
+}
 
 .d4 {
   position: relative;
   width: 60px;
   border: 0;
-  background: pink; }
-  @media only screen and (max-width: 40.063em) {
-    .d4 {
-      width: 30px; } }
+  background: pink;
+}
+@media only screen and (max-width: 40.063em) {
+  .d4 {
+      width: 30px;
+  }
+}
+
+.d4:before {
+  /*position: absolute;*/
+  position: relative;
+  /*top: 48px;*/
+  top: 48px;
+  box-sizing: border-box;
+  content: "";
+  display: block;
+  margin-left: 3.6px;
+  width: 52.2px;
+  border: 6px solid transparent;
+  border-left-width: 10.2px;
+  border-right-width: 10.2px;
+  border-bottom-color: $light-blue;
+}
+
+@media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
   .d4:before {
-    position: absolute;
-    top: 48px;
-    box-sizing: border-box;
-    content: "";
-    display: block;
-    margin-left: 3.6px;
-    width: 52.2px;
-    border: 6px solid transparent;
-    border-left-width: 10.2px;
-    border-right-width: 10.2px;
-    border-bottom-color: $light-blue; }
-    @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
-      .d4:before {
-        top: 33px;
-        margin-left: 3.2px;
-        width: 34px;
-        border: 3.2px solid transparent;
-        border-left-width: 6.8px;
-        border-right-width: 6.8px;
-        border-bottom-color: $light-blue; } }
-    @media only screen and (max-width: 40.063em) {
-      .d4:before {
-        top: 24px;
-        margin-left: 1.8px;
-        width: 25.8px;
-        border: 3px solid transparent;
-        border-left-width: 5.1px;
-        border-right-width: 5.1px;
-        border-bottom-color: $light-blue; } }
+    top: 33px;
+    margin-left: 3.2px;
+    width: 34px;
+    border: 3.2px solid transparent;
+    border-left-width: 6.8px;
+    border-right-width: 6.8px;
+    border-bottom-color: $light-blue;
+  }
+}
+@media only screen and (max-width: 40.063em) {
+  .d4:before {
+    top: 24px;
+    margin-left: 1.8px;
+    width: 25.8px;
+    border: 3px solid transparent;
+    border-left-width: 5.1px;
+    border-right-width: 5.1px;
+    border-bottom-color: $light-blue;
+  }
+}
+
+.d4:after {
+  /*position: absolute;*/
+  position: relative;
+  /*top: 60px;*/
+  top: 48px;
+  box-sizing: border-box;
+  content: "";
+  display: block;
+  margin-left: 3.6px;
+  width: 52.2px;
+  border: 6px solid transparent;
+  border-left-width: 10.2px;
+  border-right-width: 10.2px;
+  border-top-color: $light-blue;
+}
+
+@media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
   .d4:after {
-    position: absolute;
-    top: 60px;
-    box-sizing: border-box;
-    content: "";
-    display: block;
-    margin-left: 3.6px;
-    width: 52.2px;
-    border: 6px solid transparent;
-    border-left-width: 10.2px;
-    border-right-width: 10.2px;
-    border-top-color: $light-blue; }
-    @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
-      .d4:after {
-        top: 39px;
-        margin-left: 4px;
-        width: 32.4px;
-        border: 4px solid transparent;
-        border-left-width: 6.8px;
-        border-right-width: 6.8px;
-        border-top-color: $light-blue; } }
-    @media only screen and (max-width: 40.063em) {
-      .d4:after {
-        top: 30px;
-        margin-left: 1.8px;
-        width: 25.8px;
-        border: 3px solid transparent;
-        border-left-width: 5.1px;
-        border-right-width: 5.1px;
-        border-top-color: $light-blue; } }
+    top: 39px;
+    margin-left: 4px;
+    width: 32.4px;
+    border: 4px solid transparent;
+    border-left-width: 6.8px;
+    border-right-width: 6.8px;
+    border-top-color: $light-blue;
+  }
+}
+@media only screen and (max-width: 40.063em) {
+  .d4:after {
+    top: 30px;
+    margin-left: 1.8px;
+    width: 25.8px;
+    border: 3px solid transparent;
+    border-left-width: 5.1px;
+    border-right-width: 5.1px;
+    border-top-color: $light-blue;
+  }
+}
 
 .d5 {
   bottom: 3.6px;
@@ -325,7 +376,13 @@
 /* 1 */
 .digit.one .d3,
 .digit.one .d5 {
-  opacity: 1; }
+  opacity: 1;
+}
+
+.digit.one .d4 {
+  visibility: hidden;
+}
+
 
 /* 2 */
 .digit.two .d1,
@@ -333,7 +390,8 @@
 .digit.two .d4,
 .digit.two .d6,
 .digit.two .d7 {
-  opacity: 1; }
+  opacity: 1;
+}
 
 /* 3 */
 .digit.three .d1,
@@ -371,7 +429,11 @@
 .digit.seven .d1,
 .digit.seven .d3,
 .digit.seven .d5 {
-  opacity: 1; }
+  opacity: 1;
+}
+.digit.seven .d4 {
+  visibility: hidden;
+}
 
 /* 8 */
 .digit.eight .d1,
@@ -398,7 +460,12 @@
 .digit.zero .d5,
 .digit.zero .d6,
 .digit.zero .d7 {
-  opacity: 1; }
+  opacity: 1;
+}
+
+.digit.zero .d4 {
+  visibility: hidden;
+}
 
 /* comma */
 /*.digit.comma .d5  {
