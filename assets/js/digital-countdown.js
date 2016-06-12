@@ -9,7 +9,8 @@
             _labels: false,
             showBlank: true,
             seperator: true,
-            seperatorChar: ','
+            seperatorChar: ',',
+            showMSecs: false
 
         },options);
   
@@ -31,17 +32,19 @@
             'seconds'
         ];
 
+        var _mSecsRefreshDisplay;
+
         function drawCountdown(element) {
             
+            var num, numSplit, numSplitWithCommas, isComma, digit;
             var dateTo = moment(_defaults.dateTo);
             var dateNow = (_defaults.dateNow === null) ? moment() : _defaults.dateNow; 
-            var dateDiffSeconds = dateTo.diff(dateNow, 'seconds');
+            var dateDiff = true === _defaults.showMSecs ? dateTo.diff(dateNow) : dateTo.diff(dateNow, 'seconds');
             var digit_holder = $('<div class="_digits"></div>').appendTo(element);
-            var num, numSplit, numSplitWithCommas, isComma, digit;
             
             $.each(_labels, function(key,val){
-                if(dateDiffSeconds > 0) {
-                    num = pad(dateDiffSeconds,8);
+                if(dateDiff > 0) {
+                    num = pad(dateDiff,8);
                     numSplit = num.toString().split("");
                 } else {
                     numSplit = ['0','0'];
@@ -65,7 +68,7 @@
                         for(var i=1; i<8; i++){
                             digit.append('<span class="side d' + i + '">');
                         }
-                        if(dateDiffSeconds > 0) {
+                        if(dateDiff > 0) {
                             digit.addClass(_digits[val_no]);
                         } else {
                             digit.addClass('zero');
@@ -85,11 +88,11 @@
 
             var dateTo = moment(_defaults.dateTo);
             var dateNow = (_defaults.dateNow === null) ? moment() : _defaults.dateNow; 
-            var dateDiffSeconds= dateTo.diff(dateNow, 'seconds');
+            var dateDiff = true === _defaults.showMSecs ? dateTo.diff(dateNow) : dateTo.diff(dateNow, 'seconds');
             
-            if(dateDiffSeconds > 0) {
+            if(dateDiff > 0) {
                 $.each(_labels, function(key,val){
-                    var num = pad(dateDiffSeconds,8);
+                    var num = pad(dateDiff, 8);
                     var numSplit = num.toString().split("");
                     var numSplitWithCommas = addCommas(numSplit);
                     var dig, isComma;
@@ -118,7 +121,7 @@
             setInterval( 
                 function() { 
                     updateTime(element);
-                }, 1000);
+                }, _mSecsRefreshDisplay);
         }
         
         
@@ -126,7 +129,8 @@
         return this.each(function(){
             
             var element = $(this);
-            
+            // only need to update display every second if we not showing msecs
+            _mSecsRefreshDisplay = true === _defaults.showMSecs ? 100 : 1000;
             drawCountdown(element);
             startCountdown(element);
         });
