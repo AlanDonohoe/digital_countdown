@@ -1,6 +1,9 @@
 {
   "name": "minimal_digital_countdown_plugin",
-  "version": "1.0.2",
+  "version": "1.0.3",
+  "dependencies": {
+    "jquery": "~2.1.1"
+  },
   "authors": [
     "@inoratdawn", "@ghostfacecoder"
   ],
