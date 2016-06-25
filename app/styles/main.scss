@@ -21,6 +21,8 @@ $grey-pink: #ffcccc;
 .clock {
   background-color: black;
   padding: 10px;
+  /* There is conflicts with this property and the same proprty in the milligram framework */
+  box-sizing: content-box;
 }
 
 @media only screen and (max-width: 40.063em) {
