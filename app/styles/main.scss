@@ -16,10 +16,11 @@ $complimentary-blue-2: #1B9898;
 $light-blue: #3399ff;
 $grey: #333333;
 $grey-pink: #ffcccc;
+$countdown-bkgrnd-clr: #333333;
 
 
 .clock {
-  background-color: black;
+  background-color: $countdown-bkgrnd-clr;
   padding: 10px;
   /* There is conflicts with this property and the same proprty in the milligram framework */
   box-sizing: content-box;
@@ -33,7 +34,7 @@ $grey-pink: #ffcccc;
 
 .digit {
   height: 120px;
-  background-color: black;
+  background-color: $countdown-bkgrnd-clr;
   position: relative;
   display: inline-block; 
 }
@@ -60,6 +61,7 @@ $grey-pink: #ffcccc;
 .digit.comma {
   @extend .digit;
   width: 20px;
+  height: 0px;
 }
 
 
@@ -119,7 +121,7 @@ $grey-pink: #ffcccc;
   width: 20px;
   height: 120px;
   position: relative;
-  background-color: black;
+  background-color: $countdown-bkgrnd-clr;
 }
 
 @media only screen and (min-width: 40.064em) and (max-width: 49.999em) {
@@ -425,7 +427,7 @@ $grey-pink: #ffcccc;
   /*left: 3.6px;*/
   left: -2px;
   width: 32px;
-  height: 0;
+  height: 0px;
   /*width: 30px;*/
   /*border-bottom-color: $light-blue;*/
   color: $light-blue;
