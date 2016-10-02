@@ -166,6 +166,16 @@
                 arr_length = numbers_with_commas.length;
                 numbers_with_commas[arr_length - 4] = 'colon';
             }
+            return removeUnnecFinalComma(numbers_with_commas);
+        }
+
+        function removeUnnecFinalComma(numbers_with_commas) {
+            var lastIndexOfComma = numbers_with_commas.lastIndexOf('comma');
+            var lastIndexOfColon = numbers_with_commas.lastIndexOf('colon');
+            if ((lastIndexOfComma === numbers_with_commas.length) ||
+                (lastIndexOfColon - 1 === lastIndexOfComma)) {
+                numbers_with_commas.splice(lastIndexOfComma, 1);
+            }
             return numbers_with_commas;
         }
     };
