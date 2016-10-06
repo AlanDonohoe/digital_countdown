@@ -156,28 +156,33 @@
         function addCommas(numbers) {
             var numbers_with_commas = numbers;
             var arr_length = numbers_with_commas.length;
-            var i;
-            for (i = arr_length; i > 0; --i) {
-                if (0 === i % 3) {
-                    numbers_with_commas.splice(i -2 , 0, 'comma');
-                }
-            }
-            if (true === _defaults.showMSecs) {
-                arr_length = numbers_with_commas.length;
-                numbers_with_commas[arr_length - 4] = 'colon';
-            }
-            return removeUnnecFinalComma(numbers_with_commas);
-        }
+            var i = true === _defaults.showMSecs ? arr_length - 3 : arr_length;
+            // var mSecIndexOffset = true === _defaults.showMSecs ? arr_length - 4 : arr_length;
+            var indexCounter = true === _defaults.showMSecs ? arr_length - 4 : arr_length;
 
-        function removeUnnecFinalComma(numbers_with_commas) {
-            var lastIndexOfComma = numbers_with_commas.lastIndexOf('comma');
-            var lastIndexOfColon = numbers_with_commas.lastIndexOf('colon');
-            if ((lastIndexOfComma === numbers_with_commas.length) ||
-                (lastIndexOfColon - 1 === lastIndexOfComma)) {
-                numbers_with_commas.splice(lastIndexOfComma, 1);
+            if (true === _defaults.showMSecs && arr_length > 4) {
+                numbers_with_commas.splice(i, 0, 'colon');
             }
             return numbers_with_commas;
+            // TODO this needs working on to add commas... tricky with addition of full stop and Msecs
+            // for(; indexCounter > 0; --indexCounter) {
+            //     if (0 === indexCounter % 3) { numbers_with_commas.splice(indexCounter, 0, 'comma'); }
+            // }
+            // for(; i > 0; --i) {
+            //     if (0 === i % 3) { numbers_with_commas.splice(i, 0, 'comma'); }
+            // }
+            // return removeUnnecFinalComma(numbers_with_commas);
         }
+
+        // function removeUnnecFinalComma(numbers_with_commas) {
+        //     var lastIndexOfComma = numbers_with_commas.lastIndexOf('comma');
+        //     var lastIndexOfColon = numbers_with_commas.lastIndexOf('colon');
+        //     if ((lastIndexOfComma === numbers_with_commas.length) ||
+        //         (lastIndexOfColon - 1 === lastIndexOfComma)) {
+        //         numbers_with_commas.splice(lastIndexOfComma, 1);
+        //     }
+        //     return numbers_with_commas;
+        // }
     };
     
 }(window, jQuery));
