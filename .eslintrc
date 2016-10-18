@@ -5,7 +5,7 @@
   },
   "rules": {
     "no-console": ["error", { allow: ["warn", "error"] }],
-    "no-underscore-dangle": [ allow: true]
+    "no-underscore-dangle": 0
   },
   "globals": {
     "moment": false,
